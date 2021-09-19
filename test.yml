@@ -1,0 +1,83 @@
+version: '3.1'
+services:
+  wordpress1:
+    image: wordpress
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: db1
+      WORDPRESS_DB_USER: exampleuser
+      WORDPRESS_DB_PASSWORD: examplepass
+      WORDPRESS_DB_NAME: exampledb
+    volumes:
+      - wordpress1:/var/www/html
+
+  db1:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: exampledb
+      MYSQL_USER: exampleuser
+      MYSQL_PASSWORD: examplepass
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    volumes:
+      - db1:/var/lib/mysql
+
+  wordpress2:
+    image: wordpress
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: db2
+      WORDPRESS_DB_USER: exampleuser
+      WORDPRESS_DB_PASSWORD: examplepass
+      WORDPRESS_DB_NAME: exampledb
+    volumes:
+      - wordpress2:/var/www/html
+
+  db2:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: exampledb
+      MYSQL_USER: exampleuser
+      MYSQL_PASSWORD: examplepass
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    volumes:
+      - db2:/var/lib/mysql
+
+  wordpress3:
+    image: wordpress
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: db3
+      WORDPRESS_DB_USER: exampleuser
+      WORDPRESS_DB_PASSWORD: examplepass
+      WORDPRESS_DB_NAME: exampledb
+    volumes:
+      - wordpress3:/var/www/html
+
+  db3:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: exampledb
+      MYSQL_USER: exampleuser
+      MYSQL_PASSWORD: examplepass
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    volumes:
+      - db3:/var/lib/mysql
+
+  proxy:
+    image: nginx
+    restart: always
+    ports:
+      - 80:80
+    volumes:
+      - ./conf.d/:/etc/nginx/conf.d/
+
+volumes:
+  wordpress1:
+  db1:
+  wordpress2:
+  db2:
+  wordpress3:
+  db3:
