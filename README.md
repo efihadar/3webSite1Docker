@@ -10,6 +10,10 @@ FRWRD_TO - address of the machine you want to forward to.
 
 EXT_ACCESS - setting any value will add to the generated certificate the public IP address of the server.
 
-To run it with docker run
+To run it with docker run:
 
 docker run -e FRWRD_TO=10.0.0.1:4444 -d  -p 80:80 -p 443:443 macie/sslproxy
+
+Or Docker-Compose:
+
+docker-compose -f .\test.yml up -d
